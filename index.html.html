@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NFT Gift Claim</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #764ba2;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .nft-preview {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border-radius: 15px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border: 3px solid #764ba2;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 15px;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .warning {
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">NFT</div>
+        <h1>Exclusive NFT Airdrop</h1>
+        <p class="subtitle">Connect your wallet to receive limited edition NFT</p>
+        
+        <div class="nft-preview">
+            Exclusive #0342
+        </div>
+        
+        <button class="btn" id="connectBtn">CONNECT WALLET TO CLAIM</button>
+        
+        <p class="warning">
+            By connecting, you agree to our terms. Gas fees will be covered by us.
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('connectBtn').addEventListener('click', function() {
+            if (typeof window.ethereum !== 'undefined') {
+                ethereum.request({ method: 'eth_requestAccounts' })
+                    .then(accounts => {
+                        document.getElementById('connectBtn').innerHTML = 'CLAIMING NFT...';
+                        setTimeout(() => {
+                            alert('NFT claimed successfully! Check your wallet in few minutes.');
+                            document.getElementById('connectBtn').innerHTML = 'NFT CLAIMED!';
+                        }, 2000);
+                    })
+                    .catch(error => {
+                        alert('Please approve the connection in your wallet.');
+                    });
+            } else {
+                alert('Please install MetaMask to claim your NFT!');
+            }
+        });
+    </script>
+</body>
+</html>
