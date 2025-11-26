@@ -1,2 +1,2 @@
-# nft-gift-claim
+# nft-gift-
 NFT Airdrop Platform
